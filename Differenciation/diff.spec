@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['diff.py'],
-             pathex=['B:\\REPOs\\Python\\Differenciation'],
+             pathex=['B:\\REPOs\\Diff_auto\\Differenciation'],
              binaries=[],
              datas=[],
              hiddenimports=[],
