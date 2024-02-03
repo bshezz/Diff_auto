@@ -15,6 +15,7 @@ def instructions():
     print(" > for any number raised to the power of 1 please type it, e.g. 3x^1     *")
     print(" > all equations typed and their answers are added to equations.txt      *")
     print(" > please quit the program before accessing the text file                *")
+    print(" > two digits are not supported!                                         *")
     print(" > to quit type in 'quit'                                                *")
     print("**************************************************************************")
     print()
@@ -90,7 +91,7 @@ def main():
     while app == True:
         try:
             command = input("Please enter an Expression or 'quit': ")
-            file = open("equations.txt", "+a")
+            file = open("Differenciation/equations.txt", "+a")
             command = command.lower()
             if command == "quit":
                 app = False
@@ -108,11 +109,13 @@ def main():
                 file.write(text)
                 for item in equation:
                     quest += item
+                    quest += " "
                 file.write(quest)
                 file.write("\n")
 
                 for item in result2:
                     ans += item
+                    ans += " "
                 file.write(ans)
                 file.write("\n")
                 file.write("\n")
