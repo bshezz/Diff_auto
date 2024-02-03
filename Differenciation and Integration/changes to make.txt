@@ -1,6 +1,4 @@
 
-diff.py
-    > option to append all of the expressions the user inputs and their answers to a text file
 
 intergration.py
     > start

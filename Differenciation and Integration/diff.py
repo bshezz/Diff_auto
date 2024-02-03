@@ -1,4 +1,3 @@
-import math
 
 
 def instructions():
@@ -14,6 +13,8 @@ def instructions():
     print(" > do not use brackets; expand brackets ready for differenciation        *")
     print(" > use spaces between terms and between operators and terms e.g 3x^2 + 9 *")
     print(" > for any number raised to the power of 1 please type it, e.g. 3x^1     *")
+    print(" > all equations typed and their answers are added to equations.txt      *")
+    print(" > please quit the program before accessing the text file                *")
     print(" > to quit type in 'quit'                                                *")
     print("**************************************************************************")
     print()
@@ -31,6 +32,7 @@ def maths(eq):
                 base = int(element[index-2])
                 exponent = int(element[index+1])
                 variable = element[index-1]
+                text = ""
 
                 base *= exponent
                 exponent -= 1
@@ -39,30 +41,30 @@ def maths(eq):
                 check = ("a" in variable or "b" in variable or "c" in variable or "d"in variable or "e"in variable or "f"in variable or "g"in variable or "h"in variable or "i"in variable or "j"in variable or "k"in variable or "l"in variable or "m"in variable or "n"in variable or "o"in variable or "p"in variable or "q"in variable or "r"in variable or "s"in variable or "t"in variable or "u"in variable or "v"in variable or "w"in variable or "x"in variable or "y"in variable or "z" in variable)
                 # add the base, variable if the exponent is 1 or more
                 if exponent >= 1:
-                    result.append(str(base))
-                    result.append(variable)
+                    text += str(base)
+                    text += variable
                     # also add the exponent if the exponent is greater than 1
                     if exponent > 1:
-                        result.append("^")
-                        result.append(exponent)
+                        text += "^"
+                        text += str(exponent)
 
-
+                # for items with no exponent and a variable
                 elif exponent == 0 and check:
-                    result.append(str(base))
+                    text += str(base)
+
+                result.append(text)
 
             # square root
             elif element[index] == "/":
                 if element[index+1] == "/":
-
-                    text = f"{element[0]}/({element})"
-                    result.append(text)
-                    
-
-
-
-            # adding signs into the expressions
-            if element[index] == "+" or (element[index] == "/" and element[index+1] != "/") or element[index] == "*" or element[index] == "-":
-                result.append(element[index])
+                    result.append(f"{element[0]}/({element})")
+        
+            try:
+                # adding signs into the expressions
+                if element[index] == "+" or (element[index] == "/" and element[index+1] != "/") or element[index] == "*" or element[index] == "-":
+                    result.append(element[index])
+            except Exception:
+                pass
 
     # check that no signs at the end of the expression remain
     if result[-1] == "+" or result[-1] == "/" or result[-1] == "*" or result[-1] == "-":
@@ -72,13 +74,23 @@ def maths(eq):
 
     return result
 
+# additional post maths checks for the result
+def check_format_result(result):
+    for term in range(0, len(result)-1):
+        if (result[term] == "+" and result[term+1] == "+") or (result[term] == "-" and result[term+1] == "-") or (result[term] == "*" and result[term+1] == "*") or result[term] == "/" and result[term+1] == "/":
+            result.remove(result[term])
+    return result
 
 def main():
     instructions()
     app = True
+    question = 1
+
+
     while app == True:
         try:
             command = input("Please enter an Expression or 'quit': ")
+            file = open("equations.txt", "+a")
             command = command.lower()
             if command == "quit":
                 app = False
@@ -87,9 +99,29 @@ def main():
             else:
                 equation = command.split(" ")
                 result = maths(equation)
-                print("f' = ", *result)
+                result2 = check_format_result(result)
+                quest = ""
+                ans = ""
+                print("f' = ", *result2)
+
+                text = str(question) + ". "
+                file.write(text)
+                for item in equation:
+                    quest += item
+                file.write(quest)
+                file.write("\n")
+
+                for item in result2:
+                    ans += item
+                file.write(ans)
+                file.write("\n")
+                file.write("\n")
+
+                question += 1
+                file.close()
+            
         except Exception:
-            print("Try again, invalid expression/expression format!")
+            print("Try again, invalid expression or format!")
 
 
 main()
