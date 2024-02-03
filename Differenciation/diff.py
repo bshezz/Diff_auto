@@ -39,7 +39,7 @@ def maths(eq):
                 exponent -= 1
 
                 # checking that the variable is a valid maths variable
-                check = ("a" in variable or "b" in variable or "c" in variable or "d"in variable or "e"in variable or "f"in variable or "g"in variable or "h"in variable or "i"in variable or "j"in variable or "k"in variable or "l"in variable or "m"in variable or "n"in variable or "o"in variable or "p"in variable or "q"in variable or "r"in variable or "s"in variable or "t"in variable or "u"in variable or "v"in variable or "w"in variable or "x"in variable or "y"in variable or "z" in variable)
+                check = (any(char.isalpha() for char in variable))
                 # add the base, variable if the exponent is 1 or more
                 if exponent >= 1:
                     text += str(base)
