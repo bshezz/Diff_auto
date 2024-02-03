@@ -1,5 +1,5 @@
 ('B:\\REPOs\\Python\\Differenciation\\dist\\diff.exe',
- False,
+ True,
  False,
  False,
  None,
@@ -54,8 +54,8 @@
  [],
  False,
  False,
- 1706977573,
- [('runw.exe',
+ 1706977941,
+ [('run.exe',
    'b:\\python '
-   'required\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-32bit\\runw.exe',
+   'required\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-32bit\\run.exe',
    'EXECUTABLE')])
