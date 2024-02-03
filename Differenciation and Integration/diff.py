@@ -1,22 +1,20 @@
 
 
 def instructions():
-    print("********************************************")
-    print("WELCOME TO THE AUTO-DIFFERENCIATION PROGRAM!")
-    print("********************************************")
-    print("To use type in your equations using these criteria: ")
-    print(" > use the ^ character for raising to the power")
-    print(" > use the // pair of characters for square root")
-    print(" > for each term put no spaces. e.g. 3x^2")
-    print(" > between terms use spaces and between operators and terms")
-    print(" > for any number raised to the power of 1 please specifiy e.g. type 3x^1")
+    print()
+    print("**************************************************************************")
+    print("*              WELCOME TO THE AUTO-DIFFERENCIATION PROGRAM!              *")
+    print("**************************************************************************")
+    print("To use type in your equations using these criteria:                      *")
+    print(" > use the ^ character for raising to the power                          *")
+    print(" > use the // pair of characters for square root                         *")
+    print(" > for each term put no spaces. e.g. 3x^2                                *")
+    print(" > use spaces between terms and between operators and terms e.g 3x^2 + 9 *")
+    print(" > for any number raised to the power of 1 please type it, e.g. 3x^1     *")
+    print(" > to quit type in 'quit'                                                *")
+    print("**************************************************************************")
+    print()
 
-
-# user input gathering and removing of white spacing
-def usr_input():
-    eq = str(input("Enter an expression: "))
-    equation = eq.split(" ")
-    return equation
 
 # performs the differenciation on the expression given
 def maths(eq):
@@ -61,9 +59,18 @@ def maths(eq):
 
 def main():
     instructions()
-    equation = usr_input()
-    result = maths(equation)
-    print(*result)
+    app = True
+    while app == True:
+        command = input("Please enter an Expression or 'quit': ")
+        command = command.lower()
+        if command == "quit":
+            app = False
+            print("Thank you for using Auto-Diff!")
+            print("Bye.....")
+        else:
+            equation = command.split(" ")
+            result = maths(equation)
+            print(*result)
 
 
 
