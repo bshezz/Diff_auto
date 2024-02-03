@@ -1,7 +1,5 @@
 
 diff.py
-    > try and except to allow for incorrect user input of expressions so the app doesn't break
-    > add squareroot functionality
     > option to append all of the expressions the user inputs and their answers to a text file
 
 intergration.py

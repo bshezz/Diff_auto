@@ -1,3 +1,4 @@
+import math
 
 
 def instructions():
@@ -8,7 +9,9 @@ def instructions():
     print("To use type in your equations using these criteria:                      *")
     print(" > use the ^ character for raising to the power                          *")
     print(" > use the // pair of characters for square root                         *")
+    print(" > e.g. the square root of 4; 4//2                                       *")
     print(" > for each term put no spaces. e.g. 3x^2                                *")
+    print(" > do not use brackets; expand brackets ready for differenciation        *")
     print(" > use spaces between terms and between operators and terms e.g 3x^2 + 9 *")
     print(" > for any number raised to the power of 1 please type it, e.g. 3x^1     *")
     print(" > to quit type in 'quit'                                                *")
@@ -22,6 +25,7 @@ def maths(eq):
 
     for element in eq:
         for index in range(len(element)):
+            # raising to the power
             if element[index] == "^":
                 # using the power rule; multiply the base and reduce the exponent
                 base = int(element[index-2])
@@ -46,13 +50,25 @@ def maths(eq):
                 elif exponent == 0 and check:
                     result.append(str(base))
 
+            # square root
+            elif element[index] == "/":
+                if element[index+1] == "/":
+
+                    text = f"{element[0]}/({element})"
+                    result.append(text)
+                    
+
+
+
             # adding signs into the expressions
-            if element[index] == "+" or element[index] == "/" or element[index] == "*" or element[index] == "-":
+            if element[index] == "+" or (element[index] == "/" and element[index+1] != "/") or element[index] == "*" or element[index] == "-":
                 result.append(element[index])
 
     # check that no signs at the end of the expression remain
     if result[-1] == "+" or result[-1] == "/" or result[-1] == "*" or result[-1] == "-":
         result.pop()
+    if result[0] == "+" or result[0] == "/" or result[0] == "*" or result[0] == "-":
+        result.pop(0)
 
     return result
 
@@ -61,17 +77,19 @@ def main():
     instructions()
     app = True
     while app == True:
-        command = input("Please enter an Expression or 'quit': ")
-        command = command.lower()
-        if command == "quit":
-            app = False
-            print("Thank you for using Auto-Diff!")
-            print("Bye.....")
-        else:
-            equation = command.split(" ")
-            result = maths(equation)
-            print(*result)
-
+        try:
+            command = input("Please enter an Expression or 'quit': ")
+            command = command.lower()
+            if command == "quit":
+                app = False
+                print("Thank you for using Auto-Diff!")
+                print("Bye.....")
+            else:
+                equation = command.split(" ")
+                result = maths(equation)
+                print("f' = ", *result)
+        except Exception:
+            print("Try again, invalid expression/expression format!")
 
 
 main()
