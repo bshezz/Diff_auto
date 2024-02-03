@@ -1,9 +1,21 @@
 
+
+def instructions():
+    print("********************************************")
+    print("WELCOME TO THE AUTO-DIFFERENCIATION PROGRAM!")
+    print("********************************************")
+    print("To use type in your equations using these criteria: ")
+    print(" > use the ^ character for raising to the power")
+    print(" > use the // pair of characters for square root")
+    print(" > for each term put no spaces. e.g. 3x^2")
+    print(" > between terms use spaces and between operators and terms")
+    print(" > for any number raised to the power of 1 please specifiy e.g. type 3x^1")
+
+
 # user input gathering and removing of white spacing
 def usr_input():
     eq = str(input("Enter an expression: "))
     equation = eq.split(" ")
-    
     return equation
 
 # performs the differenciation on the expression given
@@ -46,7 +58,9 @@ def maths(eq):
 
     return result
 
+
 def main():
+    instructions()
     equation = usr_input()
     result = maths(equation)
     print(*result)

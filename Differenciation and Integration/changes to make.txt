@@ -1,6 +1,7 @@
 
 diff.py
     > menu and instructions
+    > add squareroot functionality
 
 intergration.py
     > start
